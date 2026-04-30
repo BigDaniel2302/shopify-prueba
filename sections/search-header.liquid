@@ -1,0 +1,111 @@
+
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<div class="section section--page-width color-{{ section.settings.color_scheme }}">
+  <div
+    class="spacing-style search-page__header"
+    style="
+      --horizontal-alignment: {{ section.settings.alignment }};
+      {% render 'spacing-style', settings: section.settings %}
+    "
+  >
+    {% assign heading_text = 'content.search' | t %}
+
+    {% if search.performed %}
+      {% assign heading_text = 'content.search_results' | t %}
+    {% endif %}
+
+    {% capture heading_text %}
+      <h3>{{ heading_text }}</h3>
+    {% endcapture %}
+
+    {% content_for 'block', id: 'heading', type: '_heading', text: heading_text %}
+    {% content_for 'block', id: 'search', type: '_search-input' %}
+  </div>
+</div>
+
+<style>
+/* FORZAR BUSCADOR CON CUADRO DE TEXTO (NO SOLO LUPA) */
+.search-input,
+.search-form,
+.predictive-search,
+.predictive-search__input-wrapper {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.search-input input,
+.search-form input,
+.predictive-search input {
+  display: block !important;
+  width: 100% !important;
+  min-width: 320px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.predictive-search__toggle,
+.search-toggle,
+button[aria-label*="search"] {
+  display: none !important;
+}
+</style>
+
+{% schema %}
+{
+  "name": "t:names.search",
+  "settings": [
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "t:options.left"
+        },
+        {
+          "value": "center",
+          "label": "t:options.center"
+        },
+        {
+          "value": "flex-end",
+          "label": "t:options.right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}
