@@ -21,8 +21,7 @@
   line-height: 1.2;
 }
 
-/* --- Google Fonts: Roboto Mono para números de parte --- */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+/* Roboto Mono se carga vía <link> en theme.liquid (más rápido que @import) */
 
 /* --- Número de parte / SKU -------------------------------- */
 .diesmax-part-number {
