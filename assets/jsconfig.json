@@ -1,3 +1,4 @@
+
 {
   "compilerOptions": {
     "baseUrl": "./",
@@ -6,9 +7,9 @@
     "noImplicitAny": true,
     "noUncheckedIndexedAccess": true,
     "strictNullChecks": true,
-    "types": ["./global.d.ts"],
     "paths": {
       "@theme/*": ["./*"]
     }
-  }
+  },
+  "include": ["**/*.js", "global.d.ts"]
 }
